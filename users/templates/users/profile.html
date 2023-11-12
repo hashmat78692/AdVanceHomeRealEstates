@@ -1,0 +1,75 @@
+{% extends "advancehomerealestatesapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" required="required" />
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  margin-bottom: 16px;
+  padding: 0 15px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.container {
+  padding: 0 16px;
+}
+</style>
+</head>
+<body>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <div class="container">
+      <div class="media">
+        <img width="200px" class="mr-3" src="{{ user.profile.image.url }}" alt="">
+        <div class="media-body">
+         <h2 class="mt-4"> {{ user.profile.First_Name }} {{ user.profile.Last_Name }} </h2>
+         <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card" >
+                <div class="container" >
+      <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group" >
+                <legend class="border-bottom mb-4" >Profile information </legend>
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+            </fieldset>
+
+
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit" required="required" />Update</button>
+            </div>
+        </form>
+            </div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
+{% endblock content %}

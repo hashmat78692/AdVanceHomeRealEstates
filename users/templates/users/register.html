@@ -1,0 +1,26 @@
+{% extends "advancehomerealestatesapp/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Create a Account here{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'advancehomerealestatesapp/style.css' %}"/>
+    <title>RealEstate Website</title>
+</head>
+
+<div class="content-section">
+<form method="POST" >
+    {% csrf_token %}
+    <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Register here!!</legend>
+                {{ form|crispy }}
+    </fieldset>
+     <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Register</button>
+                <small class="text-muted ml-2">
+                    Already having account <a href="{% url 'login' %}">click here</a> </small>
+            </div>
+        </form>
+        </div>
+{% endblock content %}

@@ -5,5 +5,5 @@ def index(request):
     return render(request,"advancehomerealestatesapp/index.html")
 
 
-def about():
-    return None
+def about(request):
+    return render(request, "advancehomerealestatesapp/about.html")
