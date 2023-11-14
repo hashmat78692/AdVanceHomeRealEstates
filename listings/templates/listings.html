@@ -1,0 +1,167 @@
+{% extends "advancehomerealestatesapp/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<script src="{% static 'listings.js' %}"></script>
+<body>
+<br><br>
+<div class="container">
+
+    <div class="row">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addListingsModal">
+          Add Listings
+        </button>
+    </div>
+    <br>
+    <div class="row">
+
+        <div id="allListings" class="row gx-5">
+            {% for i in data %}
+            <div class="card p-3" style="width: 18rem;">
+              <img class="card-img-top" src="..." alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{i.name}}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li><!--
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>-->
+                  </ul>
+                  <div class="card-body">
+                    <a href="#" class="card-link">{{i.url}}</a>
+                    <a href="#" class="card-link">Edit Listing</a>
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addListingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Listings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="form">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="listingDate">Listing Date</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="listingDate" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="addressStreet">Street</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="addressStreet" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="addressCity">City</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="addressCity" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="addressState">State</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="addressState" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="addressZipCode">ZipCode</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="addressZipCode" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="listingPrice">Listing Price</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="listingPrice" class="form-control" type="number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="listingDescription">Listing Description</label>
+                </div>
+                <div class="col-md-8">
+                    <textarea id="listingDescription" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="listingStatus">Listing Status</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="listingStatus" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="featuredPropertyIndicator">Featured Property Indicator</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="featuredPropertyIndicator" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="priceRange">Price Range</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="priceRange" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="neighbourhood">Neighbourhood</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="neighbourhood" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="propertyType">Property Type</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="propertyType" class="form-control" type="text">
+                </div>
+            </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onclick="SaveListing()" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+{% endblock content %}
