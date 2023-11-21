@@ -21,7 +21,18 @@ def listings(request):
 def savelistings(request):
     dataBack = {'a': "success"}
     if request.method == 'POST':
-        data = json.load(request)
-        print(data)
+        listingData = request.POST.get("listingData")
+        print(listingData)
 
     return JsonResponse(dataBack)
+
+@csrf_exempt
+def saveImages(request):
+    if request.method == "POST":
+        f=request.FILES
+        print(f)
+        files = request.FILES.get('data', None)
+
+        print(files)
+        return JsonResponse({"Message": "File Uploaded Successfully"})
+    return JsonResponse({"Message": ""})

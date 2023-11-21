@@ -1,3 +1,21 @@
 from django.db import models
 
-# Create your models here.
+class property_listing(models.Model):
+  property_listing_id=models.IntegerField()
+  property_listing_date=models.DateField()
+  property_listing_street=models.TextField()
+  property_listing_city=models.TextField()
+  property_listing_state = models.TextField()
+  property_listing_zipcode = models.TextField()
+  property_listing_price = models.DecimalField(max_digits=7,decimal_places=2)
+  listing_description = models.TextField()
+  property_listing_status = models.TextField()
+  property_listing_is_featured = models.BooleanField()
+  property_listing_pic1 = models.ImageField()
+  property_listing_pic2 = models.ImageField()
+  property_listing_pic3 = models.ImageField()
+  property_listing_pic4 = models.ImageField()
+  property_price_range_id = models.IntegerField()
+  property_neighbourhood_id = models.IntegerField()
+  admin_id = models.IntegerField()
+  property_type_id = models.IntegerField()
