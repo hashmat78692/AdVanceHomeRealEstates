@@ -14,8 +14,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
-from django.template.defaulttags import url
+from django.conf.urls.static import static
 from django.urls import path, include
 
 from listings import views as listing_views
@@ -28,6 +29,8 @@ urlpatterns = [
     path('profile/',users_views.profile,name='profile'),
     path('listings/', listing_views.listings, name='listings'),
     path('save-listings', listing_views.savelistings, name='savelistings'),
+    path('edit-listing/<int:id>', listing_views.editlistings, name='editlistings'),
+    path('delete-listing/<int:id>', listing_views.deletelistings, name='deletelistings'),
     path('save-images', listing_views.saveImages, name='saveImagess'),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'),name='logout'),
