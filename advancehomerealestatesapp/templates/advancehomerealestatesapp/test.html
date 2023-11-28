@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Column Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .left-column, .right-column {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Add additional styling as needed */
+        .left-column {
+            background-color: #f0f0f0;
+        }
+
+        .right-column {
+            background-color: white;
+        }
+
+        /* Add styling for elements inside columns */
+        .column-element {
+            margin-bottom: 10px;
+        }
+        .realtor_name{
+            color: #EE0C0C;
+
+            width: 175px;
+            text-align: center;
+            #height: 97px;        }
+
+        .realtor_intro{
+            color:  #141118;
+            width: 275px;
+            height: 120px;
+            font-family: Inter;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: 500;
+            line-height: normal;
+        }
+        .message_section{
+            color: #141118;
+            font-family: Inter;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: 500;
+            line-height: normal;
+            padding-top: 30px;
+        }
+        .text_area{
+            width: 50%;
+            height: 100px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #D9D9D9;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: 500;
+            line-height: normal;
+            resize: none;
+        }
+        .submit_button{
+            color: black;
+            font-family: Inter;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: 500;
+            line-height: normal;
+            width: 89px;
+            height: 25px;
+            border-radius: 8px;
+            background-color: #C3D8F7;
+            border: none;
+            align-items: center;
+
+
+        }
+        .submit_button_section{
+            padding-left: 30px;
+        }
+        /*left side*/
+        .realtor_image{
+         width: 250;
+         height: 250;
+         align-item: center;
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="left-column">
+           <image src="realtor.jpg" class="realtor_image" alt="Realtor image" ></image>
+            <p class="column-element">Element 2</p>
+            <!-- Add more elements as needed -->
+        </div>
+        <div class="right-column">
+            <p class="realtor_name">Madison <br>Vance</p>
+            <p class="realtor_intro">Introducing Madison Vance, your go-to guide
+                <br>in the world of real estate! With a keen eye for
+                <br>detail and a commitment to making your
+                <br>property dreams a reality, Madison is your
+                <br>dedicated partner in buying, selling, or investing. Experience a seamless and
+                <br>personalized real estate journey with Madison
+                <br>Vance – where expertise meets enthusiasm!</p>
+            <div class="message_section">
+                <p>Message</p>
+            </div>
+            <form action="xvr" id="text_are_form">
+                <textarea class="text_area" name="message"></textarea>
+                <div class="submit_button_section">
+                    <input type="submit" class="submit_button" value="Send Email">
+                </div>
+
+            </form>
+            <!-- Add more elements as needed -->
+        </div>
+    </div>
+
+</body>
+</html>

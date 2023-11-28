@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,70 +6,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,
     initial-scale=1, shrink-to-fit=no">
-
+   <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    </head>
   <body>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body {
-background-color: white;
-font-family: Arial, Helvetica, sans-serif;
-}
-.navbar {
-  width: 100%;
-  background-color: #00CED1;
-  overflow: auto;
-}
-
-.navbar a {
-  float: left;
-  padding: 12px;
-  color: black;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.navbar a:hover {
-  background-color: #48D1CC;
-}
-
-.active {
-  background-color: black;
-}
-
-
-</style>
 <div class="navbar">
   {% if user.is_authenticated %}
    <a  href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a>
-  <a  href="{% url 'about' %}"><i class="fa fa-fw fa-info"></i> About</a>
+  <a  href="{% url 'contactUs' %}"><i class="fa fa-fw fa-info"></i> Contact us</a>
   <a  href="#"><i class="fa fa-building"  ></i> Listings</a>
   <a  href="#"><i class="fa fa-picture-o" ></i> Events</a>
 <a  href="{% url 'profile' %}"><i class="fa fa-user-circle"></i> Profile</a>
 <a  href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
   {% else %}
   <a  href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a>
-  <a  href="{% url 'about' %}"><i class="fa fa-fw fa-info"></i> About</a>
+  <a  href="{% url 'contactUs' %}"><i class="fa fa-fw fa-info"></i> Contact us</a>
   <a  href="#"><i class="fa fa-building"  ></i> Listings</a>
   <a  href="#"><i class="fa fa-picture-o" ></i> Events</a>
 <a  href="{% url 'login' %}"><i class="fa fa-fw fa-lock"></i> Login</a>
   {% endif %}
-  </div>
-    </div>
-
-    </nav>
-    <div class="container">
+</div>
+    <div class="">
       {% block content %}
       {% endblock content %}
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"\ integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+    </body>
 </html>

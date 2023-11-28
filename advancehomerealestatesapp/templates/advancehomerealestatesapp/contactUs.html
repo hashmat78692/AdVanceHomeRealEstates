@@ -1,0 +1,43 @@
+{% extends "advancehomerealestatesapp/base.html" %}
+{% block content %}
+{% load static %}
+   <div class="profile-container">
+        <div class="profile-image-container">
+            <image src="{% static '/images/Realtor_Profile_Image_600x776.jpg' %}" class="profile-image" alt="Realtor image" ></image>
+            <div class="profile-mobile">Call us at - 1234567890</div>
+            <div class="profile-email">madison.vance@advancerealestate.com</div>
+        </div>
+
+        <div class="profile-container-desc">
+            <h2 class="realtor-name">Madison <br>Vance</h2>
+            <p class="realtor_intro">Introducing Madison Vance, your go-to guide
+                <br>in the world of real estate! With a keen eye for
+                <br>detail and a commitment to making your
+                <br>property dreams a reality, Madison is your
+                <br>dedicated partner in buying, selling, or investing. Experience a seamless and
+                <br>personalized real estate journey with Madison
+                <br>Vance – where expertise meets enthusiasm!
+            </p>
+        </div>
+   </div>
+
+
+            <!-- Add more elements as needed -->
+<p class="question-text">
+    Have Questions? Email us with  your queries
+</p>
+<form method="POST">
+  {% csrf_token %}
+  <table class="sendemail-table">
+    {{email_form.as_table}}
+  </table>
+    <div class="sendemail-button">
+         <input type="submit"  value="Send Email">
+    </div>
+</form>
+<div class="profile-footer">
+    <p>coyrights@advancereal estate.com</p>
+</div>
+
+
+{% endblock content %}
