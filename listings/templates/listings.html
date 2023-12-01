@@ -21,19 +21,30 @@
 
         <div id="allListings" class="row gx-5">
             {% for i in data %}
-            <div class="card p-3" style="width: 18rem;">
-              <img class="card-img-top" src="{{i.property_listing_pic1.image_path}}" alt="Card image cap">
+
+            <div class="card p-2 mx-auto mb-10" style="width: 23rem;">
+
+                <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
+     height="250">
+
+                </image>
+
                   <div class="card-body">
-                    <h5 class="card-title">{{i.property_listing_price}}</h5>
-                    <p class="card-text">{{i.property_listing_street}} {{i.property_listing_city}} {{i.property_listing_state}} {{i.property_listing_zipcode}} .</p>
+
+                      <p class="card-title" style="color= green">&bullet; {{i.property_listing_status}}</p>
+
+                    <h5 class="card-title" style="font-weight: bold">${{i.property_listing_price}}</h5>
+                    <p class="card-text">{{i.listing_description}}</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{i.listing_description}}</li><!--
+                    <li class="list-group-item">{{i.property_listing_street}}, {{i.property_listing_city}},{{i.property_listing_state}}, {{i.property_listing_zipcode}}</li>
+
+                      <!--
                     <li class="list-group-item">Dapibus ac facilisis in</li>
                     <li class="list-group-item">Vestibulum at eros</li>-->
                   </ul>
                 {% if request.user.is_staff %}
-                  <div class="card-body">
+                  <div class="card-footer">
                       <a href="#" class="card-link btn-primary" onclick="editListing({{i.property_listing_id}})">Edit Listing</a>
                       <a href="#" class="card-link btn-danger" onclick="deleteListing({{i.property_listing_id}})">Delete Listing</a>
                   </div>
@@ -159,7 +170,31 @@
                     <label for="propertyImage1">Property Image 1</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="propertyImage1" class="form-control" type="file">
+                    <input id="propertyImage1" name="propertyImage1" class="form-control" type="file">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="propertyImage2">Property Image 2</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="propertyImage2" name="propertyImage2" class="form-control" type="file">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="propertyImage3">Property Image 3</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="propertyImage3" name="propertyImage3" class="form-control" type="file">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="propertyImage4">Property Image 4</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="propertyImage4" name="propertyImage4" class="form-control" type="file">
                 </div>
             </div>
 

@@ -15,17 +15,39 @@ listingData.neighbourhood = $('#neighbourhood').val();
 listingData.propertyType = $('#propertyType').val();
 listingData = JSON.stringify(listingData);
 
-const Image1 = $('#propertyImage1').prop('files')[0];
-var data = new FormData();
-data.append('image1', Image1)
+const propertyImage1 = $('#propertyImage1').get(0).files[0];;
+console.log(propertyImage1)
+//const propertyImage2 = $('#propertyImage2').prop('files')[0];
+//const propertyImage3 = $('#propertyImage3').prop('files')[0];
+//const propertyImage4 = $('#propertyImage4').prop('files')[0];
+
+var Image1 = new FormData();
+Image1.append("image1", propertyImage1)
+Image1.append("csrfmiddlewareoken", '{{ csrf_token }}')
+
+//
+//var Image2 = new FormData();
+//Image2.append("image2", propertyImage2)
+//
+//var Image3 = new FormData();
+//Image3.append("image3", propertyImage3)
+//
+//var Image4 = new FormData();
+//Image4.append('image4', propertyImage4)
+
 
 console.log(Image1);
-console.log(listingData);
+//console.log(Image2);
+//console.log(Image3);
+//console.log(Image4);
 
   $.ajax({
   url: "/save-listings",
   type: "POST",
-  data: {'listingData': listingData},
+  processData: false,
+  contentType: false,
+  mimeType:"multipart/form-data",
+  data: {'listingData': listingData,'listingImage1':"Image1"},
   success: (data) => {
     console.log(data);
     if(data == "success")
@@ -33,18 +55,6 @@ console.log(listingData);
                 alert("Saved Successfully!!")
                 location.reload();
             }
-//    $.ajax({
-//         url:'/save-images',
-//         type: 'POST',
-//         data: data,
-//         success: function (response) {
-//         },
-//         error: function (response) {
-//         },
-//        cache: false,
-//        contentType: false,
-//        processData: false
-//   });
   },
   error: (error) => {
     console.log(error);

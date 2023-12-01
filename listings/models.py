@@ -7,7 +7,7 @@ class property_listing(models.Model):
   property_listing_city=models.TextField()
   property_listing_state = models.TextField()
   property_listing_zipcode = models.TextField()
-  property_listing_price = models.DecimalField(max_digits=7,decimal_places=2)
+  property_listing_price = models.DecimalField(max_digits=10,decimal_places=0)
   listing_description = models.TextField()
   property_listing_status = models.TextField()
   property_listing_is_featured = models.BooleanField()

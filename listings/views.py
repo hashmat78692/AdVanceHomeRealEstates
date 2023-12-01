@@ -1,6 +1,8 @@
 import http
+import sys
 
 from django.core import serializers
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -10,12 +12,7 @@ from listings.models import property_listing
 
 def listings(request):
     properties_list = property_listing.objects.all().values();
-    allListings = [{'name': "home", 'url': "http://.com"},
-                   {'name': "home2", 'url': "http://.net"},
-                   {'name': "home3", 'url': "http://.in"},
-                   {'name': "home4", 'url': "http://.com"},
-                   {'name': "home5", 'url': "http://.net"},
-                   {'name': "home6", 'url': "http://.in"}]
+
     context = {
         "data": properties_list
     }
@@ -25,7 +22,26 @@ def listings(request):
 @csrf_exempt
 def savelistings(request):
     if request.method == 'POST':
+        print(request.__dict__, file=sys.stderr)
         listingData = request.POST.get("listingData")
+        print(listingData)
+        #listingImage1 = request.POST.get("listingImage1")
+        #fss1 = FileSystemStorage()
+        #print(listingImage1)
+        #filename1 = fss1.save(listingImage1.name,listingImage1)
+        #url1 = fss1.url(filename1)
+        # listingImage2 = request.FILES.get("listingImage2")
+        # fss2 = FileSystemStorage()
+        # filename2 = fss2.save(listingImage2.name, listingImage2)
+        # url2 = fss2.url(filename2)
+        # listingImage3 = request.FILES.get("listingImage3")
+        # fss3 = FileSystemStorage()
+        # filename3 = fss3.save(listingImage3.name, listingImage3)
+        # url3 = fss3.url(filename3)
+        # listingImage4 = request.FILES.get("listingImage4")
+        # fss4 = FileSystemStorage()
+        # filename4 = fss4.save(listingImage4.name, listingImage4)
+        # url4 = fss4.url(filename4)
         listingData_json = json.loads(listingData)
         propertyListing = property_listing()
         propertyListing.admin_id = 1;
@@ -41,6 +57,10 @@ def savelistings(request):
         propertyListing.property_neighbourhood_id= listingData_json['neighbourhood']
         propertyListing.property_type_id = listingData_json['propertyType']
         propertyListing.property_listing_is_featured = to_boolean(listingData_json['featuredPropertyIndicator'])
+        # propertyListing.property_listing_pic1 = url1
+        # propertyListing.property_listing_pic2 = url2
+        # propertyListing.property_listing_pic3 = url3
+        # propertyListing.property_listing_pic4 = url4
         propertyListing.save()
         context = {
             'new_article_id': property_listing.pk,
