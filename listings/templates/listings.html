@@ -165,36 +165,37 @@
                     <input id="propertyType" class="form-control" type="text">
                 </div>
             </div>
+
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="propertyImage1">Property Image 1</label>
+                    <label for="propertyImage1">Property Image q</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="propertyImage1" name="propertyImage1" class="form-control" type="file">
+                    <input id="propertyImage1" class="form-control" name="propertyImage1" type="file">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="propertyImage2">Property Image 2</label>
+                    <label for="propertyImage2">Property Image q</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="propertyImage2" name="propertyImage2" class="form-control" type="file">
+                    <input id="propertyImage2" class="form-control" name="propertyImage2" type="file">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="propertyImage3">Property Image 3</label>
+                    <label for="propertyImage3">Property Image q</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="propertyImage3" name="propertyImage3" class="form-control" type="file">
+                    <input id="propertyImage3" class="form-control" name="propertyImage3" type="file">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="propertyImage4">Property Image 4</label>
+                    <label for="propertyImage4">Property Image q</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="propertyImage4" name="propertyImage4" class="form-control" type="file">
+                    <input id="propertyImage4" class="form-control" name="propertyImage4" type="file">
                 </div>
             </div>
 
@@ -202,7 +203,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" onclick="SaveListing()" class="btn btn-primary">Save changes</button>
+        <button type="button" onclick="SaveListing({{i.property_listing_id}})" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
