@@ -30,13 +30,12 @@ const propertyImage3 = $('#propertyImage3').get(0).files[0];
 const propertyImage4 = $('#propertyImage4').get(0).files[0];
 
 var Data = new FormData();
-Data.append("listingData", listingData)
 Data.append("image1", propertyImage1)
 Data.append("image2", propertyImage2)
 Data.append("image3", propertyImage3)
 Data.append("image4", propertyImage4)
+Data.append("listingData", listingData)
 Data.append("csrfmiddlewareoken", '{{ csrf_token }}')
-
 
   $.ajax({
   url: "/save-listings",

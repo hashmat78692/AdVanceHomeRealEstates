@@ -32,11 +32,11 @@ def savelistings(request):
         listingData = request.POST['listingData']
         listingData_json = json.loads(listingData)
         id = listingData_json['proprtyId']
-        print(id)
-        if id is not None:
+        print(request.POST)
+        if id is not '':
             print(id)
             property = property_listing.objects.get(property_listing_id=id)
-            property.admin_id = 1;
+            property.admin_id = 1
             property.property_listing_date = listingData_json['listingDate']
             property.property_listing_street = listingData_json['addressStreet']
             property.property_listing_city = listingData_json['addressCity']
@@ -49,6 +49,40 @@ def savelistings(request):
             property.property_neighbourhood_id = listingData_json['neighbourhood']
             property.property_type_id = listingData_json['propertyType']
             property.property_listing_is_featured = to_boolean(listingData_json['featuredPropertyIndicator'])
+
+            try:
+                image1 = request.POST['image1']
+            except:
+                image1 = request.FILES['image1']
+
+            try:
+                image2 = request.POST['image2']
+            except:
+                image2 = request.FILES['image2']
+
+            try:
+                image3 = request.POST['image3']
+            except:
+                image3 = request.FILES['image3']
+
+            try:
+                image4 = request.POST['image4']
+            except:
+                image4 = request.FILES['image4']
+
+            if image1 != 'undefined':
+                print("not undefined Image 1")
+                property.property_listing_pic1 = image1
+            if image2 != 'undefined':
+                print("not undefined Image 2")
+                property.property_listing_pic2 = image2
+            if image3 != 'undefined':
+                print("not undefined Image 3")
+                property.property_listing_pic3 = image3
+            if image4 != 'undefined':
+                print("not undefined Image 4")
+                property.property_listing_pic4 = image4
+
             property.save()
             return HttpResponse("edited")
         else:
@@ -57,9 +91,8 @@ def savelistings(request):
             image2 = request.FILES['image2']
             image3 = request.FILES['image3']
             image4 = request.FILES['image4']
-
             propertyListing = property_listing()
-            propertyListing.admin_id = 1;
+            propertyListing.admin_id = 1
             propertyListing.property_listing_date = listingData_json['listingDate']
             propertyListing.property_listing_street = listingData_json['addressStreet']
             propertyListing.property_listing_city = listingData_json['addressCity']
