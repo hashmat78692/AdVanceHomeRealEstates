@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 
-from .models import property_listing
+from .models import *
+
 
 class PropertyListing(admin.ModelAdmin):
   list_display = ("property_listing_id", "property_listing_date", "property_listing_street","property_listing_city",
@@ -11,3 +12,18 @@ class PropertyListing(admin.ModelAdmin):
                   "property_price_range_id","property_neighbourhood_id","admin_id","property_type_id")
 
 admin.site.register(property_listing,PropertyListing)
+
+class PropertyNeighbourhood(admin.ModelAdmin):
+  list_display = ("property_neighbourhood_id","property_neighbourhood_name")
+
+admin.site.register(property_neighbourhood,PropertyNeighbourhood)
+
+class PropertyPriceRange(admin.ModelAdmin):
+  list_display = ("property_price_range_id","property_price_range")
+
+admin.site.register(property_price_range,PropertyPriceRange)
+
+class PropertyType(admin.ModelAdmin):
+  list_display = ("property_type_id","property_type_name")
+
+admin.site.register(property_type,PropertyType)

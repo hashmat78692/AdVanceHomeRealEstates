@@ -19,3 +19,17 @@ class property_listing(models.Model):
   property_neighbourhood_id = models.IntegerField()
   admin_id = models.IntegerField()
   property_type_id = models.IntegerField()
+
+class property_neighbourhood(models.Model):
+    property_neighbourhood_id = models.AutoField(primary_key=True)
+    property_neighbourhood_name = models.TextField()
+
+
+class property_type(models.Model):
+  property_type_id = models.AutoField(primary_key=True)
+  property_type_name = models.TextField()
+
+
+class property_price_range(models.Model):
+  property_price_range_id = models.AutoField(primary_key=True)
+  property_price_range = models.TextField()
