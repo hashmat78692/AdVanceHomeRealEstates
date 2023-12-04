@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'users',
     'django.contrib.staticfiles',
+    'listings',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +104,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+# Enter API credentials here
+
+
+GOOGLE_GEOCODING_API_KEY = 'AIzaSyBKA0zI8Gkr42s8qZAeKx9VtOIYyLnMW8M'
+
+
+
 
 
 # Internationalization

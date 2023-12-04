@@ -1,0 +1,22 @@
+<!-- listings/templates/listings/listing_list.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Listings</h1>
+    <a href="search_listings" >Search Listing</a>
+    <ul>
+        {% for listing in listings %}
+          <li>
+                <img src="{{ listing.image.url }}" alt="{{ listing.neighborhood }}">
+                {{ listing.neighborhood }} - {{ listing.property_type }} - ${{ listing.price }}
+
+          </li>
+        {% if request.user.is_staff %}
+            <a href="edit_listing" >Edit Listing</a>
+            <a href="delete_listing" >Delete Listing</a>
+        {% endif %}
+
+        {% endfor %}
+    </ul>
+ <a href="add_listing" >Add Listing</a>
+{% endblock %}

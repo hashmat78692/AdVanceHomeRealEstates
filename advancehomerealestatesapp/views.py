@@ -3,6 +3,8 @@ from .forms import sendEmailForm
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def index(request):
@@ -41,3 +43,4 @@ def contactUsView(request):
         email_form = sendEmailForm()
         #print(f"email_form: {email_form}")
         return render(request, 'advancehomerealestatesapp/contactUs.html', {'email_form':email_form})
+
