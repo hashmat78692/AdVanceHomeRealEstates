@@ -1,16 +1,15 @@
-<!-- listings/templates/listings/search_listings.html -->
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Search Listings</title>
-</head>
-<body>
-    <h1>Search Listings</h1>
+{% extends "advancehomerealestatesapp/base.html" %}
+{% block content %}
+{% load static %}
+    <p class="question-text"> Search Listings</p>
 
     <form method="get" action="{% url 'listings:search_listings' %}">
-        {{ form.as_p }}
-        <button type="submit">Search</button>
+        <table class="sendemail-table">
+         {{ form.as_table }}
+        </table>
+        <div class="sendemail-button">
+         <input type="submit"  value="Search">
+    </div>
     </form>
 
     {% if listings %}
@@ -27,5 +26,5 @@
             {% endfor %}
         </ul>
     {% endif %}
-</body>
-</html>
+
+{% endblock  %}

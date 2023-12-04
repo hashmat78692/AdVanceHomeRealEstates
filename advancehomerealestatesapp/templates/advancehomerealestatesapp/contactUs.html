@@ -1,27 +1,31 @@
 {% extends "advancehomerealestatesapp/base.html" %}
 {% block content %}
 {% load static %}
-   <div class="profile-container">
+
+
+    <div class="profile-container">
         <div class="profile-image-container">
-            <image src="{% static '/images/Realtor_Profile_Image_600x776.jpg' %}" class="profile-image" alt="Realtor image" ></image>
-            <div class="profile-mobile">Call us at - 1234567890</div>
-            <div class="profile-email">madison.vance@advancerealestate.com</div>
+            <image src="{{ profile_details.realtor_img.url }}" class="profile-image" alt="{{ profile_details.realtor_img.url }}" ></image>
+            <div class="profile-mobile">call us at - {{ profile_details.phone_number }}</div>
+            <div class="profile-email">{{ profile_details.email }}</div>
         </div>
 
         <div class="profile-container-desc">
-            <h2 class="realtor-name">Madison <br>Vance</h2>
-            <p class="realtor_intro">Introducing Madison Vance, your go-to guide
-                <br>in the world of real estate! With a keen eye for
-                <br>detail and a commitment to making your
-                <br>property dreams a reality, Madison is your
-                <br>dedicated partner in buying, selling, or investing. Experience a seamless and
-                <br>personalized real estate journey with Madison
-                <br>Vance – where expertise meets enthusiasm!
+            <h2 class="realtor-name">{{ profile_details.first_name }} <br>{{ profile_details.last_name }}</h2>
+            <p class="realtor_intro">{{ profile_details.realtor_desc }}
             </p>
         </div>
    </div>
 
 
+
+{% if request.user.is_staff %}
+<div class="">
+<a href="{% url 'editRealtorProfile' pk=profile_details.pk%}" class="pagelink">Edit Profile</a>
+</div>
+{% endif %}
+
+{% if not request.user.is_staff %}
             <!-- Add more elements as needed -->
 <p class="question-text">
     Have Questions? Email us with  your queries
@@ -35,12 +39,9 @@
          <input type="submit"  value="Send Email">
     </div>
 </form>
+{% endif %}
 <div class="profile-footer">
-    <p>coyrights@advancereal estate.com</p>
-    {% if user.is_authenticated and user.realtor %}
-        <a href="{% url 'edit_profile' %}" class="edit-profile-button">Edit Profile</a>
-    {% endif %}
+    <p>copyrights@advancereal estate.com</p>
 </div>
 
-
-{% endblock content %}
+{% endblock  %}

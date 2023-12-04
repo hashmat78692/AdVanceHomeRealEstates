@@ -3,10 +3,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Add Listing</h2>
+  <p class="question-text">Add Listing</p>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Listing</button>
+    <table class="sendemail-table">
+    {{ form.as_table }}
+    </table>
+    <div class="sendemail-button">
+         <input type="submit"  value="Add Listing">
+    </div>
   </form>
 {% endblock %}

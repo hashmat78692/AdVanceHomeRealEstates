@@ -14,3 +14,10 @@ class Realtor(models.Model):
 
 
 # Create your models here.
+class realtor_profile(models.Model):
+    first_name = models.CharField(max_length=25,  null=False)
+    last_name = models.CharField(max_length=25,  null=False)
+    realtor_img = models.ImageField(upload_to='images/')
+    realtor_desc = models.TextField(null=False)
+    email = models.EmailField(max_length=254, null=False)
+    phone_number = models.IntegerField(null=False)

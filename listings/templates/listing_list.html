@@ -7,7 +7,7 @@
     <ul>
         {% for listing in listings %}
           <li>
-                <img src="{{ listing.image.url }}" alt="{{ listing.neighborhood }}">
+                <img class="profile-image" src="{{ listing.image.url }}" alt="{{ listing.neighborhood }}">
                 {{ listing.neighborhood }} - {{ listing.property_type }} - ${{ listing.price }}
 
           </li>

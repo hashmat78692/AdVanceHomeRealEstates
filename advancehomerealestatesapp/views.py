@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .forms import sendEmailForm
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-
+from .models import realtor_profile
+from .forms import realtorProfileForm
 
 # Create your views here.
 def index(request):
@@ -40,7 +41,23 @@ def contactUsView(request):
             return render(request, "advancehomerealestatesapp/emailSent.html")
     else:
         # GET, generate blank form
+        profile_details = realtor_profile.objects.first()
         email_form = sendEmailForm()
         #print(f"email_form: {email_form}")
-        return render(request, 'advancehomerealestatesapp/contactUs.html', {'email_form':email_form})
+        return render(request, 'advancehomerealestatesapp/contactUs.html', {'email_form':email_form, 'profile_details': profile_details})
+
+
+def editRealtorProfile(request, pk):
+    profile = get_object_or_404(realtor_profile, pk=pk)
+
+    if request.method == 'POST':
+        form = realtorProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('contactUs')  # Redirect to the profile detail view after editing
+    else:
+        form = realtorProfileForm(instance=profile)
+        return render(request, 'advancehomerealestatesapp/editRealtorProfile.html', {'form': form})
+# return render(request, "advancehomerealestatesapp/contactUs.html")
+
 
