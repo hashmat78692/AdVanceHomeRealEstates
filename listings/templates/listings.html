@@ -4,7 +4,6 @@
 {% block content %}
 <!DOCTYPE html>
 <html>
-<script src="{% static 'listings.js' %}"></script>
 <body>
 <br><br>
 <div class="container">
@@ -131,7 +130,12 @@
                     <label for="listingStatus">Listing Status</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="listingStatus" class="form-control" type="text">
+<!--                    <input id="listingStatus" class="form-control" type="text">-->
+                    <select class="form-control" id="listingStatus">
+                        <option selected>Choose...</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
@@ -147,7 +151,13 @@
                     <label for="priceRange">Price Range</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="priceRange" class="form-control" type="text">
+<!--                    <input id="priceRange" class="form-control" type="text">-->
+                      <select class="form-control" id="priceRange">
+                        <option selected>Choose...</option>
+                          {% for priceRange in propertyPriceRangeList %}
+                        <option value="{{ priceRange.property_price_range_id }}">{{ priceRange.property_price_range }}</option>
+                          {% endfor %}
+                      </select>
                 </div>
             </div>
             <div class="row">
@@ -155,7 +165,13 @@
                     <label for="neighbourhood">Neighbourhood</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="neighbourhood" class="form-control" type="text">
+<!--                    <input id="neighbourhood" class="form-control" type="text">-->
+                    <select class="form-control" id="neighbourhood">
+                        <option selected>Choose...</option>
+                          {% for neighbourhood in neighbourhoodList %}
+                        <option value="{{ neighbourhood.property_neighbourhood_id }}">{{ neighbourhood.property_neighbourhood_name }}</option>
+                          {% endfor %}
+                      </select>
                 </div>
             </div>
             <div class="row">
@@ -163,14 +179,33 @@
                     <label for="propertyType">Property Type</label>
                 </div>
                 <div class="col-md-8">
-                    <input id="propertyType" class="form-control" type="text">
+<!--                    <input id="propertyType" class="form-control" type="text">-->
+                    <select class="form-control" id="propertyType">
+                        <option selected>Choose...</option>
+                          {% for propertyType in propertyTypeList %}
+                        <option value="{{ propertyType.property_type_id }}">{{ propertyType.property_type_name }}</option>
+                          {% endfor %}
+                      </select>
                 </div>
             </div>
             <input id="propertyId" class="form-control" type="hidden">
-
+            <div id="existingImageSection" class="row">
+                <div class="form-group col-md-4">
+                    <label>Uploaded Images</label>
+                </div>
+                <div class="col-md-8">
+                    <ul>
+                        <li id="image1"></li>
+                        <li id="image2"></li>
+                        <li id="image3"></li>
+                        <li id="image4"></li>
+                    </ul>
+                </div>
+            </div>
+        <div id="imageUploadingSection">
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="propertyImage1">Property Image q</label>
+                    <label for="propertyImage1">Property Image 1</label>
                 </div>
                 <div class="col-md-8">
                     <input id="propertyImage1" class="form-control" name="propertyImage1" type="file">
@@ -178,7 +213,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="propertyImage2">Property Image q</label>
+                    <label for="propertyImage2">Property Image 2</label>
                 </div>
                 <div class="col-md-8">
                     <input id="propertyImage2" class="form-control" name="propertyImage2" type="file">
@@ -186,7 +221,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="propertyImage3">Property Image q</label>
+                    <label for="propertyImage3">Property Image 3</label>
                 </div>
                 <div class="col-md-8">
                     <input id="propertyImage3" class="form-control" name="propertyImage3" type="file">
@@ -194,12 +229,13 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="propertyImage4">Property Image q</label>
+                    <label for="propertyImage4">Property Image 4</label>
                 </div>
                 <div class="col-md-8">
                     <input id="propertyImage4" class="form-control" name="propertyImage4" type="file">
                 </div>
             </div>
+    </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -211,5 +247,6 @@
 </div>
 
 </body>
+<script src="{% static 'listings.js' %}"></script>
 </html>
 {% endblock content %}

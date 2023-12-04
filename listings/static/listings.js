@@ -1,3 +1,11 @@
+$(document).ready(function() {
+    $( "#listingDate" ).datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+
+    $('#existingImageSection').hide();
+});
+
 function SaveListing() {
 
 var listingData = new Object();
@@ -20,7 +28,7 @@ const propertyImage1 = $('#propertyImage1').get(0).files[0];
 const propertyImage2 = $('#propertyImage2').get(0).files[0];
 const propertyImage3 = $('#propertyImage3').get(0).files[0];
 const propertyImage4 = $('#propertyImage4').get(0).files[0];
-console.log(propertyImage1)
+
 var Data = new FormData();
 Data.append("listingData", listingData)
 Data.append("image1", propertyImage1)
@@ -39,11 +47,12 @@ Data.append("csrfmiddlewareoken", '{{ csrf_token }}')
   data:Data,
   success: (data) => {
     console.log(data);
-    if(data == "success")
-            {
-                alert("Saved Successfully!!")
-                location.reload();
-            }
+    if(data == "success"){
+        alert("Saved Successfully!!")
+        location.reload();}
+    if(data == "edited"){
+        alert("Edited Successfully!!")
+        location.reload();}
   },
   error: (error) => {
     console.log(error);
@@ -96,6 +105,15 @@ $('#priceRange').val(selectedProperty.property_price_range_id);
 $('#neighbourhood').val(selectedProperty.property_neighbourhood_id);
 $('#propertyType').val(selectedProperty.property_type_id);
 $('#propertyId').val(propertyID);
+
+$('#image1').text(selectedProperty.property_listing_pic1);
+$('#image2').text(selectedProperty.property_listing_pic2);
+$('#image3').text(selectedProperty.property_listing_pic3);
+$('#image4').text(selectedProperty.property_listing_pic4);
+
+$('#existingImageSection').show();
+
+console.log(selectedProperty.property_listing_pic1)
 
 }
 
