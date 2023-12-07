@@ -81,3 +81,9 @@ def deletelistings(request,id):
         property_listing.objects.filter(property_listing_id=id).delete()
 
     return HttpResponse("success")
+
+
+def detailedView(request, id):
+    listing = property_listing.objects.get(property_listing_id=id)
+    context = {'item': listing, }
+    return render(request, 'detailedView.html', context)

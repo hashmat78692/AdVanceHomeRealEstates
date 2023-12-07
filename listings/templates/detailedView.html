@@ -1,0 +1,78 @@
+{% extends "advancehomerealestatesapp/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+* {
+  box-sizing: border-box;
+}
+ 
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+ 
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+<div class="row">
+<div class="card">
+<div class="card-body">
+                            {% if user.is_authenticated %}
+<div class="listing-image">
+<div class="column">
+<img src="{{ item.property_listing_pic1.url }}" alt="property image" width="250" height="200" />
+</div>
+<div class="column">
+<img src="{{ item.property_listing_pic2.url }}" alt="property image" width="250" height="200" />
+</div>
+<div class="column">
+<img src="{{ item.property_listing_pic3.url }}" alt="property image" width="250" height="200" />
+</div>
+<div class="column">
+<img src="{{ item.property_listing_pic4.url }}" alt="property image" width="250" height="200" />
+</div>
+</div>
+<span class="" style="font-size: 15px"><b>Description:</b> {{ item.listing_description }}</span><br>
+<span class="" style="font-size: 15px"><b>Address:</b> {{ item.property_listing_street }}</span><br>
+<span class="" style="font-size: 15px"><b>Property Type:</b> {{ item.property_type_id }}</span><br>
+<span class="" style="font-size: 15px"><b>Neighborhood:</b>{{ item.property_neighbourhood_id }}</span><br>
+<span class="" style="font-size: 15px"><b>ZipCode:</b>{{ item.property_listing_zipcode }}</span><br>
+<span class="" style="font-size: 15px"><b>Price:</b>{{ item.property_listing_price }}</span><br>
+<span class="" style="font-size: 15px"><b>Status:</b>{{ item.property_listing_status }}</span><br>
+<a href="#">Update</a>
+<a href="#">Delete</a>
+                            {% else %}
+<div class="listing-image">
+<div class="column">
+<img src="{{ item.property_listing_pic1.url }}" alt="property image" width="250" height="200" />
+</div>
+<div class="column">
+<img src="{{ item.property_listing_pic2.url }}" alt="property image" width="250" height="200" />
+</div>
+<div class="column">
+<img src="{{ item.property_listing_pic3.url }}" alt="property image" width="250" height="200" />
+</div>
+<div class="column">
+<img src="{{ item.property_listing_pic4.url }}" alt="property image" width="250" height="200" />
+</div>
+</div>
+<span class="" style="font-size: 15px"><b>Name:</b> {{ item.propertyName }}</span><br>
+<span class="" style="font-size: 15px"><b>Description:</b> {{ item.listing_description }}</span><br>
+<span class="" style="font-size: 15px"><b>Address:</b> {{ item.property_listing_street }}</span><br>
+<span class="" style="font-size: 15px"><b>Property Type:</b> {{ item.property_type_id }}</span><br>
+<span class="" style="font-size: 15px"><b>Neighborhood:</b>{{ item.property_neighbourhood_id }}</span><br>
+<span class="" style="font-size: 15px"><b>ZipCode:</b>{{ item.property_listing_zipcode }}</span><br>
+<span class="" style="font-size: 15px"><b>Price:</b>{{ item.property_listing_price }}</span><br>
+<span class="" style="font-size: 15px"><b>Status:</b>{{ item.property_listing_status }}</span><br>
+<b>Do You Like Property?</b><a href="{% url 'realtor-request-information' %}"><span class="" style="font-size: 15px"><b> CLICK HERE</b></span><br></a>
+                            {% endif %}
+</div>
+ 
+                    </div>
+</div>
+{% endblock %}
