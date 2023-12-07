@@ -23,10 +23,10 @@
 
             <div class="card p-2 mx-auto mb-10" style="width: 23rem;">
 
-                <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
+                <a href="{% url 'detailview' i.property_listing_id %}"> <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
      height="250">
 
-                </image>
+                </image></a>
 
                   <div class="card-body">
 
