@@ -11,7 +11,7 @@ from listings.models import property_price_range
 
 
 def listings(request):
-    properties_list = property_listing.objects.all().values()
+    properties_list = property_listing.objects.filter(property_listing_status=('active')).values()
     propertyTypeList = property_type.objects.all().values()
     neighbourhoodList = property_neighbourhood.objects.all().values()
     propertyPriceRangeList = property_price_range.objects.all().values()
@@ -131,6 +131,7 @@ def editlistings(request,id):
 @csrf_exempt
 def deletelistings(request,id):
     if request.method == "DELETE":
-        property_listing.objects.filter(property_listing_id=id).delete()
-
+        property = property_listing.objects.filter(property_listing_id=id)
+        property.property_listing_status = "Inactive"
+        property.save()
     return HttpResponse("success")

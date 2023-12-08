@@ -2,9 +2,15 @@ $(document).ready(function() {
     $( "#listingDate" ).datepicker({
         dateFormat: "yy-mm-dd"
     });
-
-    $('#existingImageSection').hide();
+    $('#image1').hide();
+    $('#image2').hide();
+    $('#image3').hide();
+    $('#image4').hide();
 });
+
+$('.addListingsModal').on('hidden.bs.modal', function () {
+ location.reload();
+})
 
 function SaveListing() {
 
@@ -88,6 +94,10 @@ $.ajax({
 function setValuesToModal(selectedProperty,propertyID){
 
 $('.addListingsModal').modal('show');
+$('#image1').show();
+$('#image2').show();
+$('#image3').show();
+$('#image4').show();
 
 console.log(selectedProperty);
 
@@ -105,14 +115,12 @@ $('#neighbourhood').val(selectedProperty.property_neighbourhood_id);
 $('#propertyType').val(selectedProperty.property_type_id);
 $('#propertyId').val(propertyID);
 
-$('#image1').text(selectedProperty.property_listing_pic1);
-$('#image2').text(selectedProperty.property_listing_pic2);
-$('#image3').text(selectedProperty.property_listing_pic3);
-$('#image4').text(selectedProperty.property_listing_pic4);
+$('#image1').attr("src", "/static/"+selectedProperty.property_listing_pic1);
+$('#image2').attr("src", "/static/"+selectedProperty.property_listing_pic2);
+$('#image3').attr("src", "/static/"+selectedProperty.property_listing_pic3);
+$('#image4').attr("src", "/static/"+selectedProperty.property_listing_pic4);
 
-$('#existingImageSection').show();
 
-console.log(selectedProperty.property_listing_pic1)
 
 }
 
