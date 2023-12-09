@@ -18,15 +18,15 @@
   {% if user.is_authenticated %}
    <a  href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a>
   <a  href="{% url 'contactUs' %}"><i class="fa fa-fw fa-info"></i> Contact us</a>
-  <a  href="{%url 'listings:listing_list' %}"><i class="fa fa-building"  ></i> Listings</a>
-  <a  href="#"><i class="fa fa-picture-o" ></i> Events</a>
+  <a  href=""><i class="fa fa-building"  ></i> Listings</a>
+  <a  href="{% url 'attraction_list' %}"><i class="fa fa-picture-o" ></i> Explore Omaha</a>
 <a  href="{% url 'profile' %}"><i class="fa fa-user-circle"></i> Profile</a>
 <a  href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
   {% else %}
   <a  href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a>
   <a  href="{% url 'contactUs' %}"><i class="fa fa-fw fa-info"></i> Contact us</a>
- <a  href="{% url 'listings:listing_list' %}"><i class="fa fa-building"  ></i> Listings</a>
-  <a  href="#"><i class="fa fa-picture-o" ></i> Events</a>
+ <a  href=""><i class="fa fa-building"  ></i> Listings</a>
+  <a  href="{% url 'attraction_list' %}"><i class="fa fa-picture-o" ></i> Explore Omaha</a>
 <a  href="{% url 'login' %}"><i class="fa fa-fw fa-lock"></i> Login</a>
   {% endif %}
 </div>

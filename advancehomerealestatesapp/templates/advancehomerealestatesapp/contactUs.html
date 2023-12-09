@@ -20,8 +20,14 @@
 
 
 {% if request.user.is_staff %}
-<div class="">
-<a href="{% url 'editRealtorProfile' pk=profile_details.pk%}" class="pagelink">Edit Profile</a>
+<div class="text-center">
+<!--<a href="{% url 'editRealtorProfile' pk=profile_details.pk%}" class="pagelink">Edit Profile</a>-->
+    <a href="{% url 'editRealtorProfile' pk=profile_details.pk%}">
+         <button type="button" class="btn btn-primary" >
+           Edit Profile
+         </button>
+        </a>
+
 </div>
 {% endif %}
 

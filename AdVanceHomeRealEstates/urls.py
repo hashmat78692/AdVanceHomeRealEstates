@@ -23,7 +23,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('advancehomerealestatesapp.urls')),
-    path('listings/', include('listings.urls')),
     path('register/',users_views.register,name='register'),
     path('profile/',users_views.profile,name='profile'),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),

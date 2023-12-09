@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import sendEmailForm
+from .forms import attractionForm
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from .models import realtor_profile
+from .models import realtor_profile, attraction
 from .forms import realtorProfileForm
 
 # Create your views here.
@@ -60,4 +61,29 @@ def editRealtorProfile(request, pk):
         return render(request, 'advancehomerealestatesapp/editRealtorProfile.html', {'form': form})
 # return render(request, "advancehomerealestatesapp/contactUs.html")
 
+def add_attraction(request):
+    if request.method == 'POST':
+        form = attractionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('attraction_list')
+    else:
+        form = attractionForm()
+        return render(request, 'add_attraction.html', {'form': form})
+
+def attraction_list(request):
+    attractions = attraction.objects.filter(attraction_active=True)
+    return render(request, 'attraction_list.html', {'attractions': attractions})
+
+def edit_attraction(request, pk):
+    att = get_object_or_404(attraction, pk=pk)
+
+    if request.method == 'POST':
+        form = attractionForm(request.POST, request.FILES, instance=att)
+        if form.is_valid():
+            form.save()
+            return redirect('attraction_list')  # Redirect to the profile detail view after editing
+    else:
+        form = attractionForm(instance=att)
+        return render(request, 'advancehomerealestatesapp/edit_attraction.html', {'form': form})
 

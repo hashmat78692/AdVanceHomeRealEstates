@@ -1,16 +1,16 @@
 <!-- listings/templates/listings/add_listing.html -->
 
-{% extends 'base.html' %}
+{% extends 'advancehomerealestatesapp/base.html' %}
 
 {% block content %}
-  <p class="question-text">Add Listing</p>
+  <p class="question-text">Add Attraction</p>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table class="sendemail-table">
     {{ form.as_table }}
     </table>
     <div class="sendemail-button">
-         <input type="submit"  value="Add Listing">
+         <input type="submit"  value="Add Attraction">
     </div>
   </form>
 {% endblock %}

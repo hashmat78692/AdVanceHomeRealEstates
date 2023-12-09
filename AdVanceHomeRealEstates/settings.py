@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'users',
     'django.contrib.staticfiles',
-    'listings',
 ]
 
 MIDDLEWARE = [
