@@ -146,6 +146,22 @@ def detailview(request, id):
     context = {'item': prop,'item_type': prop_type,'item_neigbhour': prop_neigbhour,'item_price_range': prop_price_range}
     return render(request, 'detailedView.html', context)
 
+def home(request):
+  try:
+    prop = property_listing.objects.filter(property_listing_is_featured='True')[0]
+    print(prop.property_type_id)
+    prop_type = property_type.objects.get(property_type_id=prop.property_type_id)
+    prop_neigbhour = property_neighbourhood.objects.get(property_neighbourhood_id=prop.property_neighbourhood_id)
+    prop_price_range = property_price_range.objects.get(property_price_range_id=prop.property_price_range_id)
+    context = {'item': prop,'item_type': prop_type,'item_neigbhour': prop_neigbhour,'item_price_range': prop_price_range}
+    print(prop)
+    context = {'item': prop}
+    return render(request, 'detailedView.html',context)
+  except:
+      context = {}
+      return render(request, 'detailedView.html', context)
+
+
 @csrf_exempt
 def filterlisting(request):
     if request.method == "GET":

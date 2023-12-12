@@ -30,6 +30,7 @@ urlpatterns = [
     path('register/',users_views.register,name='register'),
     path('profile/',users_views.profile,name='profile'),
     path('listings/', listing_views.listings, name='listings'),
+    path('', listing_views.home, name='home'),
     path('save-listings', listing_views.savelistings, name='savelistings'),
     path('edit-listing/<int:id>', listing_views.editlistings, name='editlistings'),
     path('delete-listing/<int:id>', listing_views.deletelistings, name='deletelistings'),
