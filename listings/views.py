@@ -135,3 +135,52 @@ def deletelistings(request,id):
         property.property_listing_status = "Inactive"
         property.save()
     return HttpResponse("success")
+
+
+@csrf_exempt
+def filterlisting(request):
+    if request.method == "GET":
+        priceRangeFilter = request.GET['priceRangeFilter']
+        propertyTypeFilter = request.GET['propertyTypeFilter']
+        neighbourhoodFilter = request.GET['neighbourhoodFilter']
+        print(priceRangeFilter)
+        print(propertyTypeFilter)
+        print(neighbourhoodFilter)
+
+        if propertyTypeFilter == "noPropertyType" and priceRangeFilter != "noPriceRange" and neighbourhoodFilter == "noNeighbourhood":
+            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter).values()
+
+        if propertyTypeFilter == "noPropertyType" and priceRangeFilter == "noPriceRange" and neighbourhoodFilter != "noNeighbourhood":
+            properties_list = property_listing.objects.filter(property_neighbourhood_id=neighbourhoodFilter).values()
+
+        if propertyTypeFilter != "noPropertyType" and priceRangeFilter == "noPriceRange" and neighbourhoodFilter == "noNeighbourhood":
+            properties_list = property_listing.objects.filter(property_type_id=propertyTypeFilter).values()
+
+        if propertyTypeFilter != "noPropertyType" and priceRangeFilter != "noPriceRange" and neighbourhoodFilter != "noNeighbourhood":
+            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_type_id=propertyTypeFilter, property_neighbourhood_id=neighbourhoodFilter).values()
+
+        if propertyTypeFilter != "noPropertyType" and priceRangeFilter != "noPriceRange" and neighbourhoodFilter == "noNeighbourhood":
+            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_type_id=propertyTypeFilter).values()
+
+        if propertyTypeFilter == "noPropertyType" and priceRangeFilter != "noPriceRange" and neighbourhoodFilter != "noNeighbourhood":
+            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_neighbourhood_id=neighbourhoodFilter).values()
+
+        if propertyTypeFilter != "noPropertyType" and priceRangeFilter == "noPriceRange" and neighbourhoodFilter != "noNeighbourhood":
+            properties_list = property_listing.objects.filter(property_type_id=propertyTypeFilter,property_neighbourhood_id=neighbourhoodFilter).values()
+
+        propertyTypeList = property_type.objects.all().values()
+        neighbourhoodList = property_neighbourhood.objects.all().values()
+        propertyPriceRangeList = property_price_range.objects.all().values()
+
+
+
+        context = {
+            "data": properties_list,
+            "propertyTypeList": propertyTypeList,
+            "neighbourhoodList": neighbourhoodList,
+            "propertyPriceRangeList": propertyPriceRangeList
+        }
+
+        #return HttpResponse(context)
+
+        return render(request, 'listings.html', context)

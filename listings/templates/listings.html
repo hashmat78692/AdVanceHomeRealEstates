@@ -6,55 +6,81 @@
 <html>
 <body>
 <br><br>
-<div class="container">
-    {% if request.user.is_staff %}
-    <div class="row">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" onclick="addListing()">
-          Add Listings
-        </button>
-    </div>
-    {% endif %}
-    <br>
-    <div class="row">
-
-        <div id="allListings" class="row gx-5">
-            {% for i in data %}
-
-            <div class="card p-2 mx-auto mb-10" style="width: 23rem;">
-
-                <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
-     height="250">
-
-                </image>
-
-                  <div class="card-body">
-
-                      <p class="card-title" style="color= green">&bullet; {{i.property_listing_status}}</p>
-
-                    <h5 class="card-title" style="font-weight: bold">${{i.property_listing_price}}</h5>
-                    <p class="card-text">{{i.listing_description}}</p>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{i.property_listing_street}}, {{i.property_listing_city}},{{i.property_listing_state}}, {{i.property_listing_zipcode}}</li>
-
-                      <!--
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>-->
-                  </ul>
-
-                {% if request.user.is_staff %}
-                  <div class="card-footer">
-                      <button href="#" class="btn btn-primary" onclick="editListing({{i.property_listing_id}})">Edit Listing</button>
-                      <button href="#" class="btn btn-danger" onclick="deleteListing({{i.property_listing_id}})">Remove Listing</button>
-                  </div>
-                {% endif %}
+<div id ="my-container-id" class="container">
+        {% if request.user.is_staff %}
+        <div class="row">
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary" onclick="addListing()">
+                    Add Listings
+                </button>
             </div>
-            {% endfor %}
+            {% endif %}
+            <div class="col-md-9">
+                <form method="get" class="form-inline"  action="/filter-listing">
+                    {% csrf_token %}
+                    <select class="form-control" name="priceRangeFilter" id="priceRangeFilter">
+                                <option value="noPriceRange" selected>Choose Price Range</option>
+                                  {% for priceRange in propertyPriceRangeList %}
+                                <option value="{{ priceRange.property_price_range_id }}">{{ priceRange.property_price_range }}</option>
+                                  {% endfor %}
+                    </select>
+                    <select class="form-control" name="propertyTypeFilter" id="propertyTypeFilter">
+                                <option value="noPropertyType" selected>Choose Property Type</option>
+                                  {% for propertyType in propertyTypeList %}
+                                <option value="{{ propertyType.property_type_id }}">{{ propertyType.property_type_name }}</option>
+                                  {% endfor %}
+                              </select>
+                    <select class="form-control" name="neighbourhoodFilter" id="neighbourhoodFilter">
+                                <option value="noNeighbourhood" selected>Choose Neighbourhood</option>
+                                  {% for neighbourhood in neighbourhoodList %}
+                                <option value="{{ neighbourhood.property_neighbourhood_id }}">{{ neighbourhood.property_neighbourhood_name }}</option>
+                                  {% endfor %}
+                    </select>
+                    <button style="display:inline" class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
         </div>
-
-    </div>
 </div>
+
+        <br>
+        <div class="row">
+            <div id="allListings" class="row gx-5">
+                {% for i in data %}
+
+                <div class="card p-2 mx-auto mb-10" style="width: 23rem;">
+
+                    <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
+         height="250">
+
+                    </image>
+
+                      <div class="card-body">
+
+                          <p class="card-title" style="color= green">&bullet; {{i.property_listing_status}}</p>
+
+                        <h5 class="card-title" style="font-weight: bold">${{i.property_listing_price}}</h5>
+                        <p class="card-text">{{i.listing_description}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{i.property_listing_street}}, {{i.property_listing_city}},{{i.property_listing_state}}, {{i.property_listing_zipcode}}</li>
+
+                          <!--
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Vestibulum at eros</li>-->
+                      </ul>
+
+                    {% if request.user.is_staff %}
+                      <div class="card-footer">
+                          <button href="#" class="btn btn-primary" onclick="editListing({{i.property_listing_id}})">Edit Listing</button>
+                          <button href="#" class="btn btn-danger" onclick="deleteListing({{i.property_listing_id}})">Remove Listing</button>
+                      </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
 
 
 <!-- Modal -->
@@ -153,7 +179,6 @@
                     <label for="priceRange">Price Range</label>
                 </div>
                 <div class="col-md-8">
-<!--                    <input id="priceRange" class="form-control" type="text">-->
                       <select class="form-control" id="priceRange">
                         <option selected>Choose...</option>
                           {% for priceRange in propertyPriceRangeList %}

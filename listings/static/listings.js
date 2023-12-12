@@ -147,3 +147,28 @@ if (confirm('are you sure you want to delete the listing: '+id+' ?')) {
 
 
 }
+
+function filterListings()
+{
+console.log("inFilter")
+var filterData = new Object();
+filterData.priceRangeFilter = $("#priceRangeFilter").val();
+filterData.propertyTypeFilter = $("#propertyTypeFilter").val();
+filterData.neighbourhoodFilter = $("#neighbourhoodFilter").val();
+
+console.log(filterData);
+
+$.ajax({
+         url:'/filter-listing',
+         type: 'GET',
+         data:filterData,
+         success: function (response) {
+            console.log(response)
+         },
+         error: function (response) {
+         console.log(response);
+         }
+   });
+
+
+}

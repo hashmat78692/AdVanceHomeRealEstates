@@ -31,6 +31,7 @@ urlpatterns = [
     path('save-listings', listing_views.savelistings, name='savelistings'),
     path('edit-listing/<int:id>', listing_views.editlistings, name='editlistings'),
     path('delete-listing/<int:id>', listing_views.deletelistings, name='deletelistings'),
+    path('filter-listing', listing_views.filterlisting, name='filterlisting'),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'),name='logout'),
     path('password-reset/',
