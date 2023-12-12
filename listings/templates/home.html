@@ -1,31 +1,38 @@
 {% extends "advancehomerealestatesapp/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
-
 {% block content %}
-<div class="container">
-    <h1><center>Featured Property</center></h1>
-    <br>
-    <div class="row">
+<style>
+* {
+  box-sizing: border-box;
+}
 
-        <div id="featuredListings" class="row gx-5">
-            <div class="p-2 mx-auto mb-10" style="width: 23rem;">
-                <a href="/detailed-view/{{featured_property.property_listing_id}}">
-                    <h5 class="card-title" style="font-weight: bold">${{featured_property.property_listing_pic1}}</h5>
-                    <image src="{% static '/media/'|add:featured_property.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
-height="250">
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
 
-         </image><img src="{{featured_property.property_listing_pic1}}" class="property-image responsive" alt="featured property"></a>
-
-         <h6>!!!This is our featured property for this week!!!</h6>
-
-        </a>
-         <button type="button" class="btn btn-primary" onclick="Listings(({{listings.html}}))">
-            View All Listings
-        </button>
-
-            </div>
-        </div>
-
-    </div>
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+<div class="card">
+<div class="card-body">
+<div class="listing-image">
+<div class="column">
+<img src="{{ item.property_listing_pic1.url }}" alt="property image" width="250" height="200" />
 </div>
-{% endblock content %}
+</div>
+
+
+
+
+</div>
+
+<script src="{% static 'listings.js' %}"></script>
+
+{% endblock %}

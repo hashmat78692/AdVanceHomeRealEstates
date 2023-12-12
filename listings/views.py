@@ -153,12 +153,12 @@ def home(request):
     # featured_property = property_listing.objects.filter(property_listing_id__in=randomized_featured_property)
 
     context = {
-        'featured_property': properties_list
+        'item': properties_list
     }
 
     print(properties_list)
 
-    return render(request, "home.html", context=context)
+    return render(request, "home.html", context)
 
 
 @csrf_exempt
