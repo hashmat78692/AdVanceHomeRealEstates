@@ -143,6 +143,8 @@ def detailview(request, id):
     context = {'item': prop}
     return render(request, 'detailedView.html', context)
 
+def home(request):
+    return render(request, 'home.html')
 @csrf_exempt
 def filterlisting(request):
     if request.method == "GET":
