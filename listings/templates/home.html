@@ -1,14 +1,31 @@
 {% extends "advancehomerealestatesapp/base.html" %}
-{% load crispy_forms_tags %}
 {% load static %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-<h2>home</h2>
-</body>
-</html>
+<div class="container">
+    <h1><center>Featured Property</center></h1>
+    <br>
+    <div class="row">
+
+        <div id="featuredListings" class="row gx-5">
+            <div class="p-2 mx-auto mb-10" style="width: 23rem;">
+                <a href="/detailed-view/{{featured_property.property_listing_id}}">
+                    <h5 class="card-title" style="font-weight: bold">${{featured_property.property_listing_pic1}}</h5>
+                    <image src="{% static '/media/'|add:featured_property.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
+height="250">
+
+         </image><img src="{{featured_property.property_listing_pic1}}" class="property-image responsive" alt="featured property"></a>
+
+         <h6>!!!This is our featured property for this week!!!</h6>
+
+        </a>
+         <button type="button" class="btn btn-primary" onclick="Listings(({{listings.html}}))">
+            View All Listings
+        </button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
 {% endblock content %}
