@@ -82,6 +82,7 @@ $.ajax({
          success: function (response) {
          var selectedProperty = response[0]['fields'];
          var propertyID = response[0]['pk'];
+         console.log('hi')
          setValuesToModal(selectedProperty,propertyID);
          },
          error: function (response) {
@@ -92,7 +93,7 @@ $.ajax({
 }
 
 function setValuesToModal(selectedProperty,propertyID){
-
+console.log('hello')
 $('.addListingsModal').modal('show');
 $('#image1').show();
 $('#image2').show();
