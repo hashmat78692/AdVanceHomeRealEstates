@@ -55,7 +55,7 @@ font-family: Arial, Helvetica, sans-serif;
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <div class="navbar">
   {% if user.is_authenticated %}
-   <a  href="{% url '' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+   <a  href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a>
   <a  href="{% url 'listings' %}"><i class="fa fa-building"  ></i> Listings</a>
     <a  href="{% url 'contactUs' %}"><i class="fa fa-fw fa-info"></i> Contact us</a>
   <a  href="{% url 'attraction_list' %}"><i class="fa fa-picture-o" ></i> Explore Omaha</a>
@@ -63,8 +63,7 @@ font-family: Arial, Helvetica, sans-serif;
 
 <a  href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
   {% else %}
-  <a  href="{% url '' %}"><i class="fa fa-fw fa-home"></i> Home</a>
-
+   <a  href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a>
   <a  href="{% url 'contactUs' %}"><i class="fa fa-fw fa-info"></i> Contact us</a>
   <a  href="{% url 'listings' %}"><i class="fa fa-building"  ></i> Listings</a>
   <a  href="{% url 'attraction_list' %}"><i class="fa fa-picture-o" ></i> Explore Omaha</a>
