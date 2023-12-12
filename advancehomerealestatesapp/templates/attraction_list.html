@@ -1,0 +1,64 @@
+{% extends "advancehomerealestatesapp/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<br><br>
+<div class="container">
+    {% if request.user.is_staff %}
+    <div class="row">
+        <!-- Button trigger modal -->
+        <a href="add_attraction">
+         <button type="button" class="btn btn-primary" >
+           Add Attraction
+         </button>
+        </a>
+
+
+    </div>
+    {% endif %}
+    <br>
+    <div class="row">
+
+        <div id="allListings" class="row gx-5">
+            {% for attraction in attractions %}
+
+            <div class="card p-2 mx-auto mb-10" style="width: 23rem;">
+
+                <img src="{{ attraction.attraction_image.url }}" class="property-image" alt="Property image"  width="350"
+     height="250">
+
+                <div class="card-body">
+
+                      <h5 class="card-title" style="font-weight: bold">&bullet; {{attraction.attraction_name}}</h5>
+
+                    <p class="card-title" >{{attraction.attraction_desc}}</p>
+                    <!-- <p class="card-text">{{attraction.attraction_desc}}</p> !-->
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="{{attraction.attraction_url}}" target="_blank">More Details</a></li>
+
+                      <!--
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>-->
+                  </ul>
+                {% if request.user.is_staff %}
+                  <div class="card-footer">
+                      <a href="{% url 'edit_attraction' pk=attraction.pk%}" class="card-link btn-primary">Edit Attraction</a>
+
+                  </div>
+                {% endif %}
+
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>
+{% endblock content %}

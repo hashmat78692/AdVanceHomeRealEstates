@@ -22,6 +22,8 @@ from django.urls import path, include
 from listings import views as listing_views
 from users import views as users_views
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('advancehomerealestatesapp.urls')),
@@ -46,4 +48,7 @@ urlpatterns = [
     path('password-reset-complete/',
      auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
      name='password_reset_complete'),
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,53 @@
+{% extends "advancehomerealestatesapp/base.html" %}
+{% block content %}
+{% load static %}
+
+
+    <div class="profile-container">
+        <div class="profile-image-container">
+            <image src="{{ profile_details.realtor_img.url }}" class="profile-image" alt="{{ profile_details.realtor_img.url }}" ></image>
+            <div class="profile-mobile">call us at - {{ profile_details.phone_number }}</div>
+            <div class="profile-email">{{ profile_details.email }}</div>
+        </div>
+
+        <div class="profile-container-desc">
+            <h2 class="realtor-name">{{ profile_details.first_name }} <br>{{ profile_details.last_name }}</h2>
+            <p class="realtor_intro">{{ profile_details.realtor_desc }}
+            </p>
+        </div>
+   </div>
+
+
+
+{% if request.user.is_staff %}
+<div class="text-center">
+<!--<a href="{% url 'editRealtorProfile' pk=profile_details.pk%}" class="pagelink">Edit Profile</a>-->
+    <a href="{% url 'editRealtorProfile' pk=profile_details.pk%}">
+         <button type="button" class="btn btn-primary" >
+           Edit Profile
+         </button>
+        </a>
+
+</div>
+{% endif %}
+
+{% if not request.user.is_staff %}
+            <!-- Add more elements as needed -->
+<p class="question-text">
+    Have Questions? Email us with  your queries
+</p>
+<form method="POST">
+  {% csrf_token %}
+  <table class="sendemail-table">
+    {{email_form.as_table}}
+  </table>
+    <div class="sendemail-button">
+         <input type="submit"  value="Send Email">
+    </div>
+</form>
+{% endif %}
+<div class="profile-footer">
+    <p>copyrights@advancereal estate.com</p>
+</div>
+
+{% endblock  %}
