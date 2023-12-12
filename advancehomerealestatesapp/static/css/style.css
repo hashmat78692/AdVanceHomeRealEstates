@@ -1,0 +1,122 @@
+body {
+background-color: white;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #00CED1;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #48D1CC;
+}
+
+.active {
+  background-color: black;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.image {
+            width: 200px;
+            height: 150px;
+            margin-right: 10px;
+        }
+        .button-container {
+    margin-top: 20px;
+        }
+
+.button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.imgButton{
+    text-align:center;
+}
+.realtor-name{
+ color: #EE0C0C;
+ font-weight: bold;
+ #text-align: center;
+
+}
+
+.profile-container{
+display: flex;
+justify-content: space-around;
+}
+.profile-image{
+width: 250px;
+height:200px;
+border: 2px none;
+margin: 30px;
+}
+.profile-container-desc{
+margin: 30px;
+border: 2px none
+
+}
+.profile-mobile{
+padding-left: 60px;
+}
+.sendemail-table th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+.sendemail-table{
+  margin-left: auto;
+  margin-right: auto;
+}
+.sendemail-button{
+width: 60px;
+height: 20px;
+margin-left: auto;
+margin-right: auto;
+}
+.question-text{
+text-align: center;
+font-weight: bold;
+}
+.profile-footer{
+height: 40px;
+width: 100%;
+background: #C3D8F7;
+margin: 30px 0px 0px 0px;
+display: flex;
+justify-content: center;
+padding: 10px 0px;
+
+
+}
+.email-sent{
+text-align: center;
+}

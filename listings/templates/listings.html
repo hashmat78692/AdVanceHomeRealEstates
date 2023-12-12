@@ -6,55 +6,82 @@
 <html>
 <body>
 <br><br>
-<div class="container">
-    {% if request.user.is_staff %}
-    <div class="row">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" onclick="addListing()">
-          Add Listings
-        </button>
-    </div>
-    {% endif %}
-    <br>
-    <div class="row">
 
-        <div id="allListings" class="row gx-5">
-            {% for i in data %}
-
-            <div class="card p-2 mx-auto mb-10" style="width: 23rem;">
-
-                <a href="{% url 'detailview' i.property_listing_id %}"> <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
-     height="250">
-
-                </image></a>
-
-                  <div class="card-body">
-
-                      <p class="card-title" style="color= green">&bullet; {{i.property_listing_status}}</p>
-
-                    <h5 class="card-title" style="font-weight: bold">${{i.property_listing_price}}</h5>
-                    <p class="card-text">{{i.listing_description}}</p>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{i.property_listing_street}}, {{i.property_listing_city}},{{i.property_listing_state}}, {{i.property_listing_zipcode}}</li>
-
-                      <!--
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>-->
-                  </ul>
-
-                {% if request.user.is_staff %}
-                  <div class="card-footer">
-                      <a href="#" class="card-link btn-primary" onclick="editListing({{i.property_listing_id}})">Edit Listing</a>
-                      <a href="#" class="card-link btn-danger" onclick="deleteListing({{i.property_listing_id}})">Delete Listing</a>
-                  </div>
-                {% endif %}
+<div id ="my-container-id" class="container">
+        {% if request.user.is_staff %}
+        <div class="row">
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary" onclick="addListing()">
+                    Add Listings
+                </button>
             </div>
-            {% endfor %}
+            {% endif %}
+            <div class="col-md-9">
+                <form method="get" class="form-inline"  action="/filter-listing">
+                    {% csrf_token %}
+                    <select class="form-control" name="priceRangeFilter" id="priceRangeFilter">
+                                <option value="noPriceRange" selected>Choose Price Range</option>
+                                  {% for priceRange in propertyPriceRangeList %}
+                                <option value="{{ priceRange.property_price_range_id }}">{{ priceRange.property_price_range }}</option>
+                                  {% endfor %}
+                    </select>
+                    <select class="form-control" name="propertyTypeFilter" id="propertyTypeFilter">
+                                <option value="noPropertyType" selected>Choose Property Type</option>
+                                  {% for propertyType in propertyTypeList %}
+                                <option value="{{ propertyType.property_type_id }}">{{ propertyType.property_type_name }}</option>
+                                  {% endfor %}
+                              </select>
+                    <select class="form-control" name="neighbourhoodFilter" id="neighbourhoodFilter">
+                                <option value="noNeighbourhood" selected>Choose Neighbourhood</option>
+                                  {% for neighbourhood in neighbourhoodList %}
+                                <option value="{{ neighbourhood.property_neighbourhood_id }}">{{ neighbourhood.property_neighbourhood_name }}</option>
+                                  {% endfor %}
+                    </select>
+                    <button style="display:inline" class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
         </div>
-
-    </div>
 </div>
+
+        <br>
+        <div class="row">
+            <div id="allListings" class="row gx-5">
+                {% for i in data %}
+
+                <div class="card p-2 mx-auto mb-10" style="width: 23rem;">
+
+                    <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
+         height="250">
+
+                    </image>
+
+                      <div class="card-body">
+
+                          <p class="card-title" style="color= green">&bullet; {{i.property_listing_status}}</p>
+
+                        <h5 class="card-title" style="font-weight: bold">${{i.property_listing_price}}</h5>
+                        <p class="card-text">{{i.listing_description}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{i.property_listing_street}}, {{i.property_listing_city}},{{i.property_listing_state}}, {{i.property_listing_zipcode}}</li>
+
+                          <!--
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Vestibulum at eros</li>-->
+                      </ul>
+
+                    {% if request.user.is_staff %}
+                      <div class="card-footer">
+                          <button href="#" class="btn btn-primary" onclick="editListing({{i.property_listing_id}})">Edit Listing</button>
+                          <button href="#" class="btn btn-danger" onclick="deleteListing({{i.property_listing_id}})">Remove Listing</button>
+                      </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
 
 
 <!-- Modal -->
@@ -135,6 +162,8 @@
                         <option selected>Choose...</option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
+
+
                     </select>
                 </div>
             </div>
@@ -151,7 +180,6 @@
                     <label for="priceRange">Price Range</label>
                 </div>
                 <div class="col-md-8">
-<!--                    <input id="priceRange" class="form-control" type="text">-->
                       <select class="form-control" id="priceRange">
                         <option selected>Choose...</option>
                           {% for priceRange in propertyPriceRangeList %}
@@ -194,48 +222,45 @@
                     <label>Uploaded Images</label>
                 </div>
                 <div class="col-md-8">
-                    <ul>
-                        <li id="image1"></li>
-                        <li id="image2"></li>
-                        <li id="image3"></li>
-                        <li id="image4"></li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <img id="image1" width="150" height="120"></img>
+                            </div>
+                            <div class="row">
+                                <input id="propertyImage1" class="form-control" name="propertyImage1" type="file">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <img id="image2" width="150" height="120"></img>
+                            </div>
+                            <div class="row">
+                                <input id="propertyImage2" class="form-control" name="propertyImage2" type="file">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <img id="image3" width="150" height="120"></img>
+                            </div>
+                            <div class="row">
+                                <input id="propertyImage3" class="form-control" name="propertyImage3" type="file">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <img id="image4" width="150" height="120"></img>
+                            </div>
+                            <div class="row">
+                                <input id="propertyImage4" class="form-control" name="propertyImage4" type="file">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        <div id="imageUploadingSection">
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="propertyImage1">Property Image 1</label>
-                </div>
-                <div class="col-md-8">
-                    <input id="propertyImage1" class="form-control" name="propertyImage1" type="file">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="propertyImage2">Property Image 2</label>
-                </div>
-                <div class="col-md-8">
-                    <input id="propertyImage2" class="form-control" name="propertyImage2" type="file">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="propertyImage3">Property Image 3</label>
-                </div>
-                <div class="col-md-8">
-                    <input id="propertyImage3" class="form-control" name="propertyImage3" type="file">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="propertyImage4">Property Image 4</label>
-                </div>
-                <div class="col-md-8">
-                    <input id="propertyImage4" class="form-control" name="propertyImage4" type="file">
-                </div>
-            </div>
-    </div>
         </div>
       </div>
       <div class="modal-footer">
