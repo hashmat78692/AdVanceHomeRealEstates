@@ -144,7 +144,10 @@ def detailview(request, id):
     return render(request, 'detailedView.html', context)
 
 def home(request):
-    return render(request, 'home.html')
+    prop = property_listing.objects.filter(property_listing_is_featured='True')[0]
+    print(prop)
+    context = {'item': prop}
+    return render(request, 'detailedView.html',context)
 @csrf_exempt
 def filterlisting(request):
     if request.method == "GET":
