@@ -22,6 +22,9 @@
     .property-image {
       display: block;
       margin: 0 auto;
+      /* Increase image size */
+      width: 400px;
+      height: 280px;
     }
 
     .center-text {
@@ -35,7 +38,6 @@
       margin-top: 20px; /* Adjust the margin-top value as needed */
       padding: 10px;   /* Add padding to the button */
     }
-
   </style>
 
   <div class="card">
@@ -43,7 +45,7 @@
       <div class="listing-image">
         <div class="column">
           <a href="{% url 'detailview' item.property_listing_id %}">
-            <img src="{{ item.property_listing_pic1.url }}" class="property-image" alt="Property image" width="350" height="250">
+            <img src="{{ item.property_listing_pic1.url }}" class="property-image" alt="Property image" width="500" height="350">
           </a>
         </div>
       </div>
@@ -52,7 +54,6 @@
     <script src="{% static 'listings.js' %}"></script>
 
     <h6 class="center-text">!!!This is our featured property for this week!!!</h6>
-
     <div class="center-button">
       <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'listings' %}'">
         View All Listings
