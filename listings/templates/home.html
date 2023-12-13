@@ -2,37 +2,58 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-<style>
-* {
-  box-sizing: border-box;
-}
+  <h1 style="text-align: center;">Featured Property</h1>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.column {
-  float: left;
-  width: 25%;
-  padding: 5px;
-}
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
 
+    .column {
+      width: 100%;
+      text-align: center;
+    }
 
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-</style>
-<div class="card">
-<div class="card-body">
-<div class="listing-image">
-<div class="column">
-<img src="{{ item.property_listing_pic1.url }}" alt="property image" width="250" height="200" />
-</div>
-</div>
+    .property-image {
+      display: block;
+      margin: 0 auto;
+    }
 
+    .center-text {
+      text-align: center;
+    }
 
+    .center-button {
+      text-align: center;
+      margin-top: 20px; /* Adjust the margin-top value as needed */
+      padding: 2px;   /* Add padding to the button */
+    }
+  </style>
 
+  <div class="card">
+    <div class="card-body">
+      <div class="listing-image">
+        <div class="column">
+          <a href="{% url 'detailview' item.property_listing_id %}">
+            <img src="{{ item.property_listing_pic1.url }}" class="property-image" alt="Property image" width="350" height="250">
+          </a>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <script src="{% static 'listings.js' %}"></script>
 
-<script src="{% static 'listings.js' %}"></script>
+    <h6 class="center-text">!!!This is our featured property for this week!!!</h6>
 
+    <div class="center-button">
+      <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'listings' %}'">
+        View All Listings
+      </button>
+    </div>
+  </div>
 {% endblock %}
