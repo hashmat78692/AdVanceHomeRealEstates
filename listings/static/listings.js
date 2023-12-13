@@ -12,6 +12,7 @@ $('.addListingsModal').on('hidden.bs.modal', function () {
  location.reload();
 })
 
+
 function SaveListing() {
 
 var listingData = new Object();
@@ -23,7 +24,14 @@ listingData.addressZipCode = $('#addressZipCode').val();
 listingData.listingPrice = $('#listingPrice').val();
 listingData.listingDescription = $('#listingDescription').val();
 listingData.listingStatus = $('#listingStatus').val();
-listingData.featuredPropertyIndicator = $('#featuredPropertyIndicator').val();
+if ($('#featuredPropertyIndicator').is(':checked')) {
+    listingData.featuredPropertyIndicator = "true";
+}
+else
+{
+    listingData.featuredPropertyIndicator = "false";
+}
+
 listingData.priceRange = $('#priceRange').val();
 listingData.neighbourhood = $('#neighbourhood').val();
 listingData.propertyType = $('#propertyType').val();
@@ -110,7 +118,12 @@ $('#addressZipCode').val(selectedProperty.property_listing_zipcode);
 $('#listingPrice').val(selectedProperty.property_listing_price);
 $('#listingDescription').val(selectedProperty.listing_description);
 $('#listingStatus').val(selectedProperty.property_listing_status);
-$('#featuredPropertyIndicator').val(selectedProperty.property_listing_is_featured);
+
+if(selectedProperty.property_listing_is_featured== true)
+{
+  $('#featuredPropertyIndicator').prop('checked', true);;
+}
+
 $('#priceRange').val(selectedProperty.property_price_range_id);
 $('#neighbourhood').val(selectedProperty.property_neighbourhood_id);
 $('#propertyType').val(selectedProperty.property_type_id);

@@ -173,25 +173,28 @@ def filterlisting(request):
         print(neighbourhoodFilter)
 
         if propertyTypeFilter == "noPropertyType" and priceRangeFilter != "noPriceRange" and neighbourhoodFilter == "noNeighbourhood":
-            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter).values()
+            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_listing_status=('active')).values()
 
         if propertyTypeFilter == "noPropertyType" and priceRangeFilter == "noPriceRange" and neighbourhoodFilter != "noNeighbourhood":
-            properties_list = property_listing.objects.filter(property_neighbourhood_id=neighbourhoodFilter).values()
+            properties_list = property_listing.objects.filter(property_neighbourhood_id=neighbourhoodFilter,property_listing_status=('active')).values()
 
         if propertyTypeFilter != "noPropertyType" and priceRangeFilter == "noPriceRange" and neighbourhoodFilter == "noNeighbourhood":
-            properties_list = property_listing.objects.filter(property_type_id=propertyTypeFilter).values()
+            properties_list = property_listing.objects.filter(property_type_id=propertyTypeFilter,property_listing_status=('active')).values()
 
         if propertyTypeFilter != "noPropertyType" and priceRangeFilter != "noPriceRange" and neighbourhoodFilter != "noNeighbourhood":
-            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_type_id=propertyTypeFilter, property_neighbourhood_id=neighbourhoodFilter).values()
+            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_type_id=propertyTypeFilter, property_neighbourhood_id=neighbourhoodFilter,property_listing_status=('active')).values()
 
         if propertyTypeFilter != "noPropertyType" and priceRangeFilter != "noPriceRange" and neighbourhoodFilter == "noNeighbourhood":
-            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_type_id=propertyTypeFilter).values()
+            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_type_id=propertyTypeFilter,property_listing_status=('active')).values()
 
         if propertyTypeFilter == "noPropertyType" and priceRangeFilter != "noPriceRange" and neighbourhoodFilter != "noNeighbourhood":
-            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_neighbourhood_id=neighbourhoodFilter).values()
+            properties_list = property_listing.objects.filter(property_price_range_id=priceRangeFilter,property_neighbourhood_id=neighbourhoodFilter,property_listing_status=('active')).values()
 
         if propertyTypeFilter != "noPropertyType" and priceRangeFilter == "noPriceRange" and neighbourhoodFilter != "noNeighbourhood":
-            properties_list = property_listing.objects.filter(property_type_id=propertyTypeFilter,property_neighbourhood_id=neighbourhoodFilter).values()
+            properties_list = property_listing.objects.filter(property_type_id=propertyTypeFilter,property_neighbourhood_id=neighbourhoodFilter,property_listing_status=('active')).values()
+
+        if propertyTypeFilter == "noPropertyType" and priceRangeFilter == "noPriceRange" and neighbourhoodFilter == "noNeighbourhood":
+            properties_list = property_listing.objects.filter(property_listing_status=('active')).values()
 
         propertyTypeList = property_type.objects.all().values()
         neighbourhoodList = property_neighbourhood.objects.all().values()
