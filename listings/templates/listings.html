@@ -8,14 +8,14 @@
 <br><br>
 
 <div id ="my-container-id" class="container">
-        {% if request.user.is_staff %}
-        <div class="row">
+    <div class="row">
             <div class="col-md-3">
+        {% if request.user.is_staff %}
                 <button type="button" class="btn btn-primary" onclick="addListing()">
                     Add Listings
                 </button>
-            </div>
             {% endif %}
+                </div>
             <div class="col-md-9">
                 <form method="get" class="form-inline"  action="/filter-listing">
                     {% csrf_token %}

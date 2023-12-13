@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-  <h1 style="text-align: center;">Featured Property</h1>
+  <h2 style="text-align: center;">This week's Featured Property</h2>
   <style>
     * {
       box-sizing: border-box;
@@ -23,8 +23,8 @@
       display: block;
       margin: 0 auto;
       /* Increase image size */
-      width: 400px;
-      height: 280px;
+      width: 600px;
+      height: 400px;
     }
 
     .center-text {
@@ -38,26 +38,71 @@
       margin-top: 20px; /* Adjust the margin-top value as needed */
       padding: 10px;   /* Add padding to the button */
     }
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+      filter: invert(1);
+    }
+    .carousel .carousel-inner .carousel-item {background-color: white;}
   </style>
+
+<script src="{% static 'listings.js' %}"></script>
 
   <div class="card">
     <div class="card-body">
       <div class="listing-image">
         <div class="column">
-          <a href="{% url 'detailview' item.property_listing_id %}">
-            <img src="{{ item.property_listing_pic1.url }}" class="property-image" alt="Property image" width="500" height="350">
-          </a>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <a href="{% url 'detailview' item.property_listing_id %}">
+                  <img src="{{ item.property_listing_pic1.url }}" class="property-image" alt="Property image" width="600" height="450">
+                </a>
+              </div>
+              <div class="carousel-item">
+                <a href="{% url 'detailview' item.property_listing_id %}">
+                  <img src="{{ item.property_listing_pic2.url }}" class="property-image" alt="Property image" width="600" height="450">
+                </a>
+              </div>
+              <div class="carousel-item">
+                <a href="{% url 'detailview' item.property_listing_id %}">
+                  <img src="{{ item.property_listing_pic3.url }}" class="property-image" alt="Property image" width="600" height="450">
+                </a>
+              </div>
+              <div class="carousel-item">
+                <a href="{% url 'detailview' item.property_listing_id %}">
+                  <img src="{{ item.property_listing_pic4.url }}" class="property-image" alt="Property image" width="600" height="450">
+                </a>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
+    <h6 class="center-text">{{ item.listing_description }}</h6>
+    <br>
+        <h5 class="center-text" style="font-weight: bold">${{ item.property_listing_price }}</h5>
 
-    <script src="{% static 'listings.js' %}"></script>
-
-    <h6 class="center-text">!!!This is our featured property for this week!!!</h6>
     <div class="center-button">
       <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'listings' %}'">
         View All Listings
       </button>
     </div>
   </div>
+
 {% endblock %}
+

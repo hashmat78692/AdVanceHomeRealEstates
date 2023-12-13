@@ -21,57 +21,62 @@
 }
 </style>
 <div class="row">
-<div class="card">
+
 <div class="card-body">
                             {% if user.is_authenticated %}
 <div class="listing-image">
 <div class="column">
-<img src="{{ item.property_listing_pic1.url }}" alt="property image" width="250" height="200" />
+<img src="{{ item.property_listing_pic1.url }}" alt="property image" width="350" height="300" />
 </div>
 <div class="column">
-<img src="{{ item.property_listing_pic2.url }}" alt="property image" width="250" height="200" />
+<img src="{{ item.property_listing_pic2.url }}" alt="property image" width="350" height="300" />
 </div>
 <div class="column">
-<img src="{{ item.property_listing_pic3.url }}" alt="property image" width="250" height="200" />
+<img src="{{ item.property_listing_pic3.url }}" alt="property image" width="350" height="300" />
 </div>
 <div class="column">
-<img src="{{ item.property_listing_pic4.url }}" alt="property image" width="250" height="200" />
+<img src="{{ item.property_listing_pic4.url }}" alt="property image" width="350" height="300" />
 </div>
+<div style="text-align: center">
+    <br>
+    <br> <br>
+
+<span class="" style="font-size: 20px"><b></b> {{ item.listing_description }}</span><br>
+<span class="" style="font-size: 20px"><b>Address:</b> {{ item.property_listing_street }}</span><br>
+<span class="" style="font-size: 20px"><b>Property Type:</b> {{ item_type.property_type_name }}</span><br>
+<span class="" style="font-size: 20px"><b>Neighborhood:</b>{{ item_neigbhour.property_neighbourhood_name }}</span><br>
+<span class="" style="font-size: 20px"><b>ZipCode:</b>{{ item.property_listing_zipcode }}</span><br>
+<span class="" style="font-size: 20px"><b>Price:</b>{{ item_price_range.property_price_range }}</span><br>
+<span class="" style="font-size: 20px"><b>Status:</b>{{ item.property_listing_status }}</span><br>
 </div>
-<span class="" style="font-size: 15px"><b>Name:</b> {{ item.property_listing_id }}</span><br>
-<span class="" style="font-size: 15px"><b>Description:</b> {{ item.listing_description }}</span><br>
-<span class="" style="font-size: 15px"><b>Address:</b> {{ item.property_listing_street }}</span><br>
-<span class="" style="font-size: 15px"><b>Property Type:</b> {{ item_type.property_type_name }}</span><br>
-<span class="" style="font-size: 15px"><b>Neighborhood:</b>{{ item_neigbhour.property_neighbourhood_name }}</span><br>
-<span class="" style="font-size: 15px"><b>ZipCode:</b>{{ item.property_listing_zipcode }}</span><br>
-<span class="" style="font-size: 15px"><b>Price:</b>{{ item_price_range.property_price_range }}</span><br>
-<span class="" style="font-size: 15px"><b>Status:</b>{{ item.property_listing_status }}</span><br>
- <button href="#" class="btn btn-primary" onclick="editListing({{item.property_listing_id}})">Edit Listing</button>
     <button href="#" class="btn btn-danger" onclick="deleteListing({{item.property_listing_id}})">Remove Listing</button>
                             {% else %}
 <div class="listing-image">
 <div class="column">
-<img src="{{ item.property_listing_pic1.url }}" alt="property image" width="250" height="200" />
+<img src="{{ item.property_listing_pic1.url }}" alt="property image" width="350" height="300" />
 </div>
 <div class="column">
-<img src="{{ item.property_listing_pic2.url }}" alt="property image" width="250" height="200" />
+<img src="{{ item.property_listing_pic2.url }}" alt="property image" width="350" height="300" />
 </div>
 <div class="column">
-<img src="{{ item.property_listing_pic3.url }}" alt="property image" width="250" height="200" />
+<img src="{{ item.property_listing_pic3.url }}" alt="property image" width="350" height="300" />
 </div>
 <div class="column">
-<img src="{{ item.property_listing_pic4.url }}" alt="property image" width="250" height="200" />
+<img src="{{ item.property_listing_pic4.url }}" alt="property image" width="350" height="300" />
 </div>
 </div>
-<span class="" style="font-size: 15px"><b>Name:</b> {{ item.property_listing_id }}</span><br>
-<span class="" style="font-size: 15px"><b>Description:</b> {{ item.listing_description }}</span><br>
-<span class="" style="font-size: 15px"><b>Address:</b> {{ item.property_listing_street }}</span><br>
-<span class="" style="font-size: 15px"><b>Property Type:</b> {{ item_type.property_type_name }}</span><br>
-<span class="" style="font-size: 15px"><b>Neighborhood:</b>{{ item_neigbhour.property_neighbourhood_name }}</span><br>
-<span class="" style="font-size: 15px"><b>ZipCode:</b>{{ item.property_listing_zipcode }}</span><br>
-<span class="" style="font-size: 15px"><b>Price:</b>{{ item_price_range.property_price_range }}</span><br>
-<span class="" style="font-size: 15px"><b>Status:</b>{{ item.property_listing_status }}</span><br>
-<b>Do You Like Property?</b><a href="#"><span class="" style="font-size: 15px"><b> CLICK HERE</b></span><br></a>
+    <div style="text-align: center">
+<br> <br>
+        <br> <br>
+
+<span class="" style="font-size: 20px"><b></b> {{ item.listing_description }}</span><br>
+<span class="" style="font-size: 20px"><b>Address:</b> {{ item.property_listing_street }}</span><br>
+<span class="" style="font-size: 20px"><b>Property Type:</b> {{ item_type.property_type_name }}</span><br>
+<span class="" style="font-size: 20px"><b>Neighborhood:</b>{{ item_neigbhour.property_neighbourhood_name }}</span><br>
+<span class="" style="font-size: 20px"><b>ZipCode:</b>{{ item.property_listing_zipcode }}</span><br>
+<span class="" style="font-size: 20px"><b>Price:</b>{{ item_price_range.property_price_range }}</span><br>
+<span class="" style="font-size: 20px"><b>Status:</b>{{ item.property_listing_status }}</span><br>
+    </div>
                             {% endif %}
 </div>
 
