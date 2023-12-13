@@ -2,13 +2,62 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-<h2>home</h2>
-</body>
-</html>
-{% endblock content %}
+  <h1 style="text-align: center;">Featured Property</h1>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .column {
+      width: 100%;
+      text-align: center;
+    }
+
+    .property-image {
+      display: block;
+      margin: 0 auto;
+      /* Increase image size */
+      width: 400px;
+      height: 280px;
+    }
+
+    .center-text {
+      text-align: center;
+    }
+
+    .center-button {
+      text-align: center;
+      font-size: 20px;
+      border-radius: 10px;
+      margin-top: 20px; /* Adjust the margin-top value as needed */
+      padding: 10px;   /* Add padding to the button */
+    }
+  </style>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="listing-image">
+        <div class="column">
+          <a href="{% url 'detailview' item.property_listing_id %}">
+            <img src="{{ item.property_listing_pic1.url }}" class="property-image" alt="Property image" width="500" height="350">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'listings.js' %}"></script>
+
+    <h6 class="center-text">!!!This is our featured property for this week!!!</h6>
+    <div class="center-button">
+      <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'listings' %}'">
+        View All Listings
+      </button>
+    </div>
+  </div>
+{% endblock %}
