@@ -41,35 +41,23 @@
                 </form>
             </div>
         </div>
-</div>
 
         <br>
         <div class="row">
-            <div id="allListings" class="row gx-5">
+            <div id="allListings" class="row">
                 {% for i in data %}
-
-                <div class="card p-2 mx-auto mb-10" style="width: 23rem;">
-
-                  <a href="{% url 'detailview' i.property_listing_id %}">  <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350"
-         height="250">
-
-                  </image></a>
-
+                <div class="card p-2 mx-auto" style="width: 23rem;">
+                  <a href="{% url 'detailview' i.property_listing_id %}">
+                      <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350" height="250"></image>
+                  </a>
                       <div class="card-body">
-
                           <p class="card-title" style="color= green">&bullet; {{i.property_listing_status}}</p>
-
-                        <h5 class="card-title" style="font-weight: bold">${{i.property_listing_price}}</h5>
-                        <p class="card-text">{{i.listing_description}}</p>
+                          <h5 class="card-title" style="font-weight: bold">${{i.property_listing_price}}</h5>
+                          <p class="card-text">{{i.listing_description}}</p>
                       </div>
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{i.property_listing_street}}, {{i.property_listing_city}},{{i.property_listing_state}}, {{i.property_listing_zipcode}}</li>
-
-                          <!--
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>-->
                       </ul>
-
                     {% if request.user.is_staff %}
                       <div class="card-footer">
                           <button href="#" class="btn btn-primary" onclick="editListing({{i.property_listing_id}})">Edit Listing</button>
@@ -79,10 +67,8 @@
                 </div>
                 {% endfor %}
             </div>
-
         </div>
-    </div>
-
+</div>
 
 <!-- Modal -->
 <div class="modal fade addListingsModal" id="addListingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
