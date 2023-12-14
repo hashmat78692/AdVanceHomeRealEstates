@@ -48,7 +48,7 @@
                 {% for i in data %}
                 <div class="card p-2 mx-auto" style="width: 23rem;">
                   <a href="{% url 'detailview' i.property_listing_id %}">
-                      <image src="{% static '/'|add:i.property_listing_pic1 %}" class="property-image" alt="Property image"  width="350" height="250"></image>
+                      <image src="/media/{{i.property_listing_pic1 }}" class="property-image" alt="Property image"  width="350" height="250"></image>
                   </a>
                       <div class="card-body">
                           <p class="card-title" style="color= green">&bullet; {{i.property_listing_status}}</p>
